@@ -1,0 +1,16 @@
+services:
+  noxreservationdb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "${DATASOURCE_PASSWORD}"
+    ports:
+      - "${DATASOURCE_PORT}:5432"
+    volumes:
+      - postgres_nox_data:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: "512M"
+          cpus: "0.5"   
+volumes:
+  postgres_nox_data:
