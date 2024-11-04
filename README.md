@@ -38,6 +38,9 @@ $ npm install
 #database
 docker-compose up -d
 
+#database
+docker-compose up -d
+
 # development
 $ npm run start
 
