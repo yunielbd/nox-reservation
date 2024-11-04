@@ -18,10 +18,20 @@ export class ClientsController {
     return this.clientsService.create(createClientDto);
   }
 
-  @Get()
-  findAll(@Query() paginationDto: PaginationDto) {
-    return this.clientsService.findAll(paginationDto);
-  }
+/**
+ * Retrieves a paginated list of all clients.
+ * 
+ * @param paginationDto - An object containing pagination parameters.
+ * @param paginationDto.page - The page number to retrieve.
+ * @param paginationDto.limit - The number of items per page.
+ * 
+ * @returns A promise that resolves to a paginated list of clients.
+ */
+@Get()
+findAll(@Query() paginationDto: PaginationDto) {
+  return this.clientsService.findAll(paginationDto);
+}
+
 
   @Get(':id')
   @ApiResponse({description: 'Client found', type: Client})

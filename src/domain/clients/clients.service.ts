@@ -6,8 +6,6 @@ import { Client } from './entities/client.entity';
 import { Repository } from 'typeorm';
 import { PaginationDto } from 'common/dto/pagination.dto';
 import { DEFAULT_PAGE_SIZE } from 'common/util/common.constants';
-// import { PaginationDto } from 'src/common/dto/pagination.dto';
-// import { DEFAULT_PAGE_SIZE } from 'src/common/util/common.constants';
 
 @Injectable()
 export class ClientsService {
@@ -33,7 +31,6 @@ export class ClientsService {
 
   async findOne(id: number) {
     const client = await this.clientRepository.findOneBy({id});
-    // return !client ? throw new NotFoundException('this client was not found') : client;
     if(!client){
       throw new NotFoundException('this client was not found')
     }

@@ -26,6 +26,6 @@ class IsMinimumAgeConstraint implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments) {  
     const [minAge] = args.constraints;   
-    return `La edad debe ser mayor que ${minAge}.`; // dynamic default error message if validation fails  
+    return `age must be greater than ${minAge}.`; // dynamic default error message if validation fails  
   }  
 }   
