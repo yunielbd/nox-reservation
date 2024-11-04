@@ -35,6 +35,6 @@ export class Client {
     @ManyToMany( () => Restaurant, (restaurant) => restaurant.clients)
     restaurants: Restaurant[];
 
-    @OneToMany( () => Order, (order) => order.client, { cascade:true } )
+    @OneToMany( () => Order, (order) => order.client)
     orders: Order[];
 }

@@ -1,16 +1,20 @@
 import { Client } from "clients/entities/client.entity";
+import { IsEntity } from "common/decorators/is-entity.decorator";
 import { RegistryDates } from "common/embedded/registry-dates.embedded";
 import { OrderStatus } from "order/enums/order-status.enum";
 import { Restaurant } from "restaurant/entities/restaurant.entity";
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Order {
 
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
+    orderId: number;
+
+    @Column()
     clientId: number;
 
-    @PrimaryColumn()
+    @Column()
     restaurantId: number;
 
     @Column()
@@ -30,8 +34,11 @@ export class Order {
     @Column(() => RegistryDates, { prefix: false })
     registryDates: RegistryDates;
   
-    @ManyToOne(() => Client, (client) => client.orders, { onDelete: 'CASCADE' })
+    @ManyToOne(() => Client,{cascade:false})
+    @JoinColumn({ name: 'clientId' })
     client: Client;
-    @ManyToOne(() => Restaurant, (restaurant) => restaurant.orders)
+
+    @ManyToOne(() => Restaurant,{cascade:false})
+    @JoinColumn({ name:'restaurantId' })
     restaurant: Restaurant;
 }

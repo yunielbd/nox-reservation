@@ -9,7 +9,8 @@ async function bootstrap() {
     .setTitle('NOX quiz')
     .setDescription('this is an example API for apliynig for a job at NOX')
     .setVersion('1.0')
-    .addTag('NOX')
+    // .addTag('NOX')
+    .addServer('http://localhost:3000')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);

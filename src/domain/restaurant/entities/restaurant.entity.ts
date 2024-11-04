@@ -1,6 +1,7 @@
 import { Client } from "clients/entities/client.entity";
 import { RegistryDates } from "common/embedded/registry-dates.embedded";
-import { PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, Entity } from "typeorm";
+import { Order } from "order/entities/order.entity";
+import { PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, Entity, OneToMany } from "typeorm";
 
 @Entity()
 export class Restaurant {
@@ -19,6 +20,12 @@ export class Restaurant {
     @ManyToMany(() => Client, (client) => client.restaurants)
     @JoinTable({name:'restaurant_to_client'})
     clients: Client[];
-    orders: any;
+
+    @OneToMany( () => Order, (order) => order.restaurant, { cascade:true } )
+    orders: Order[];
+
+    // get isFull(): boolean {
+    //     return this.capacity <= this.orders?.length;
+    // }
 
 }
